@@ -123,6 +123,7 @@ struct ContentView: View {
                 }) {
                     Text("Load...")
                 }
+                .frame(width: 120)
             }
             ToolbarItem() {
                 Button(action:{
@@ -131,6 +132,7 @@ struct ContentView: View {
                 }) {
                     Text("Save...")
                 }
+                .frame(width: 120)
             }
 
         }
