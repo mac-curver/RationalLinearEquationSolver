@@ -41,7 +41,7 @@ struct Equation: Codable {
     static func save(A: Matrix, b: Vector) {
         Task {
             let savePanel = NSSavePanel()
-            savePanel.nameFieldStringValue = "_Untitled"
+            savePanel.nameFieldStringValue = "Untitled"
             savePanel.allowedContentTypes = [.json, .plainText]
             if await savePanel.begin() == .OK, let url = savePanel.url {
                 do {

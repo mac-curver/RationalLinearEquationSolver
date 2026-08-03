@@ -34,9 +34,6 @@ struct AboutView: View {
     var body: some View {
         VStack {
             HStack {
-                Image(nsImage: NSImage(named: "Flask") ?? NSImage())
-                    .resizable()
-                    .frame(width: 32, height: 32)
                 Image(nsImage: NSImage(named: NSImage.applicationIconName) ?? NSImage())
                     .resizable()
                     .frame(width: 32, height: 32)
