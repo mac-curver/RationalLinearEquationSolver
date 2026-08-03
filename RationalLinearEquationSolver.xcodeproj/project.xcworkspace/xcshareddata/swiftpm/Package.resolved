@@ -1,0 +1,15 @@
+{
+  "originHash" : "58b2df4a38739f94305d73212eaade3637ae7179175426e28c6d0aea61172966",
+  "pins" : [
+    {
+      "identity" : "swiftmatrix",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/theolternative/SwiftMatrix",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f9b3fb8e86c80addd5dfddeda143695b44c15db4"
+      }
+    }
+  ],
+  "version" : 3
+}

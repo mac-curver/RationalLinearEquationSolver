@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26FB06B8301E0E8000CC523B /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 26FB06B7301E0E8000CC523B /* Readme.md */; };
+		26FB06BA301E130500CC523B /* License.md in Resources */ = {isa = PBXBuildFile; fileRef = 26FB06B9301E130500CC523B /* License.md */; };
+		26FB06F9301E550800CC523B /* AppIcon2.icon in Resources */ = {isa = PBXBuildFile; fileRef = 26FB06F8301E550800CC523B /* AppIcon2.icon */; };
+		26FB0701302098CA00CC523B /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 26FB0700302098CA00CC523B /* AppIcon.icon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2625C8EA300E3C8B00789CDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2625C8D4300E3C8A00789CDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2625C8DB300E3C8A00789CDC;
+			remoteInfo = RationalLinearEquationSolver;
+		};
+		2625C8F4300E3C8B00789CDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2625C8D4300E3C8A00789CDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2625C8DB300E3C8A00789CDC;
+			remoteInfo = RationalLinearEquationSolver;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2625C8DC300E3C8A00789CDC /* RationalLinearEquationSolver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RationalLinearEquationSolver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2625C8E9300E3C8B00789CDC /* RationalLinearEquationSolverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RationalLinearEquationSolverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2625C8F3300E3C8B00789CDC /* RationalLinearEquationSolverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RationalLinearEquationSolverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26FB06B7301E0E8000CC523B /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		26FB06B9301E130500CC523B /* License.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
+		26FB06F8301E550800CC523B /* AppIcon2.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon2.icon; sourceTree = "<group>"; };
+		26FB0700302098CA00CC523B /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2625C8DE300E3C8A00789CDC /* RationalLinearEquationSolver */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RationalLinearEquationSolver;
+			sourceTree = "<group>";
+		};
+		2625C8EC300E3C8B00789CDC /* RationalLinearEquationSolverTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RationalLinearEquationSolverTests;
+			sourceTree = "<group>";
+		};
+		2625C8F6300E3C8B00789CDC /* RationalLinearEquationSolverUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RationalLinearEquationSolverUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2625C8D9300E3C8A00789CDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2625C8E6300E3C8B00789CDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2625C8F0300E3C8B00789CDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2625C8D3300E3C8A00789CDC = {
+			isa = PBXGroup;
+			children = (
+				26FB06F8301E550800CC523B /* AppIcon2.icon */,
+				26FB0700302098CA00CC523B /* AppIcon.icon */,
+				26FB06B7301E0E8000CC523B /* Readme.md */,
+				26FB06B9301E130500CC523B /* License.md */,
+				2625C8DE300E3C8A00789CDC /* RationalLinearEquationSolver */,
+				2625C8EC300E3C8B00789CDC /* RationalLinearEquationSolverTests */,
+				2625C8F6300E3C8B00789CDC /* RationalLinearEquationSolverUITests */,
+				2625C8DD300E3C8A00789CDC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2625C8DD300E3C8A00789CDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2625C8DC300E3C8A00789CDC /* RationalLinearEquationSolver.app */,
+				2625C8E9300E3C8B00789CDC /* RationalLinearEquationSolverTests.xctest */,
+				2625C8F3300E3C8B00789CDC /* RationalLinearEquationSolverUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2625C8DB300E3C8A00789CDC /* RationalLinearEquationSolver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2625C8FD300E3C8B00789CDC /* Build configuration list for PBXNativeTarget "RationalLinearEquationSolver" */;
+			buildPhases = (
+				2625C8D8300E3C8A00789CDC /* Sources */,
+				2625C8D9300E3C8A00789CDC /* Frameworks */,
+				2625C8DA300E3C8A00789CDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2625C8DE300E3C8A00789CDC /* RationalLinearEquationSolver */,
+			);
+			name = RationalLinearEquationSolver;
+			packageProductDependencies = (
+			);
+			productName = RationalLinearEquationSolver;
+			productReference = 2625C8DC300E3C8A00789CDC /* RationalLinearEquationSolver.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2625C8E8300E3C8B00789CDC /* RationalLinearEquationSolverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2625C900300E3C8B00789CDC /* Build configuration list for PBXNativeTarget "RationalLinearEquationSolverTests" */;
+			buildPhases = (
+				2625C8E5300E3C8B00789CDC /* Sources */,
+				2625C8E6300E3C8B00789CDC /* Frameworks */,
+				2625C8E7300E3C8B00789CDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2625C8EB300E3C8B00789CDC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2625C8EC300E3C8B00789CDC /* RationalLinearEquationSolverTests */,
+			);
+			name = RationalLinearEquationSolverTests;
+			packageProductDependencies = (
+			);
+			productName = RationalLinearEquationSolverTests;
+			productReference = 2625C8E9300E3C8B00789CDC /* RationalLinearEquationSolverTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2625C8F2300E3C8B00789CDC /* RationalLinearEquationSolverUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2625C903300E3C8B00789CDC /* Build configuration list for PBXNativeTarget "RationalLinearEquationSolverUITests" */;
+			buildPhases = (
+				2625C8EF300E3C8B00789CDC /* Sources */,
+				2625C8F0300E3C8B00789CDC /* Frameworks */,
+				2625C8F1300E3C8B00789CDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2625C8F5300E3C8B00789CDC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2625C8F6300E3C8B00789CDC /* RationalLinearEquationSolverUITests */,
+			);
+			name = RationalLinearEquationSolverUITests;
+			packageProductDependencies = (
+			);
+			productName = RationalLinearEquationSolverUITests;
+			productReference = 2625C8F3300E3C8B00789CDC /* RationalLinearEquationSolverUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2625C8D4300E3C8A00789CDC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					2625C8DB300E3C8A00789CDC = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					2625C8E8300E3C8B00789CDC = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 2625C8DB300E3C8A00789CDC;
+					};
+					2625C8F2300E3C8B00789CDC = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 2625C8DB300E3C8A00789CDC;
+					};
+				};
+			};
+			buildConfigurationList = 2625C8D7300E3C8A00789CDC /* Build configuration list for PBXProject "RationalLinearEquationSolver" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2625C8D3300E3C8A00789CDC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2625C8DD300E3C8A00789CDC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2625C8DB300E3C8A00789CDC /* RationalLinearEquationSolver */,
+				2625C8E8300E3C8B00789CDC /* RationalLinearEquationSolverTests */,
+				2625C8F2300E3C8B00789CDC /* RationalLinearEquationSolverUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2625C8DA300E3C8A00789CDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26FB06B8301E0E8000CC523B /* Readme.md in Resources */,
+				26FB06F9301E550800CC523B /* AppIcon2.icon in Resources */,
+				26FB0701302098CA00CC523B /* AppIcon.icon in Resources */,
+				26FB06BA301E130500CC523B /* License.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2625C8E7300E3C8B00789CDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2625C8F1300E3C8B00789CDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2625C8D8300E3C8A00789CDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2625C8E5300E3C8B00789CDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2625C8EF300E3C8B00789CDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2625C8EB300E3C8B00789CDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2625C8DB300E3C8A00789CDC /* RationalLinearEquationSolver */;
+			targetProxy = 2625C8EA300E3C8B00789CDC /* PBXContainerItemProxy */;
+		};
+		2625C8F5300E3C8B00789CDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2625C8DB300E3C8A00789CDC /* RationalLinearEquationSolver */;
+			targetProxy = 2625C8F4300E3C8B00789CDC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2625C8FB300E3C8B00789CDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2625C8FC300E3C8B00789CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		2625C8FE300E3C8B00789CDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=macosx*]" = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "1.0.3 (2026-07-30)";
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rational Linear Equation Solver";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.03;
+				PRODUCT_BUNDLE_IDENTIFIER = de.legoEsprit.RationalLinearEquationSolver;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2625C8FF300E3C8B00789CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=macosx*]" = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "1.0.3 (2026-07-30)";
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rational Linear Equation Solver";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.03;
+				PRODUCT_BUNDLE_IDENTIFIER = de.legoEsprit.RationalLinearEquationSolver;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2625C901300E3C8B00789CDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.legoEsprit.RationalLinearEquationSolverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RationalLinearEquationSolver.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RationalLinearEquationSolver";
+			};
+			name = Debug;
+		};
+		2625C902300E3C8B00789CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.legoEsprit.RationalLinearEquationSolverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RationalLinearEquationSolver.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RationalLinearEquationSolver";
+			};
+			name = Release;
+		};
+		2625C904300E3C8B00789CDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.legoEsprit.RationalLinearEquationSolverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = RationalLinearEquationSolver;
+			};
+			name = Debug;
+		};
+		2625C905300E3C8B00789CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.legoEsprit.RationalLinearEquationSolverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = RationalLinearEquationSolver;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2625C8D7300E3C8A00789CDC /* Build configuration list for PBXProject "RationalLinearEquationSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2625C8FB300E3C8B00789CDC /* Debug */,
+				2625C8FC300E3C8B00789CDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2625C8FD300E3C8B00789CDC /* Build configuration list for PBXNativeTarget "RationalLinearEquationSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2625C8FE300E3C8B00789CDC /* Debug */,
+				2625C8FF300E3C8B00789CDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2625C900300E3C8B00789CDC /* Build configuration list for PBXNativeTarget "RationalLinearEquationSolverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2625C901300E3C8B00789CDC /* Debug */,
+				2625C902300E3C8B00789CDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2625C903300E3C8B00789CDC /* Build configuration list for PBXNativeTarget "RationalLinearEquationSolverUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2625C904300E3C8B00789CDC /* Debug */,
+				2625C905300E3C8B00789CDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2625C8D4300E3C8A00789CDC /* Project object */;
+}
