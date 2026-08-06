@@ -10,16 +10,23 @@ import Foundation
 import SwiftUI
 import RegexBuilder
 
+/// Struct for fractions as num, den, where num and den are Int
 struct Rational: Equatable {
     var num: Int
     var den: Int
     var approx: Double {
         return Double(num) / Double(den)
     }
+    /// One, zero and invalid elements as static
     static let one = Rational(1)
     static let zero = Rational(0)
     static let invalid = Rational(1, 0)
-
+    
+    /// Constructor
+    /// - Parameters:
+    ///   - num: Numerator
+    ///   - den: Denominator
+    ///   Creates an shortened rational with positive denominator
     init(_ num: Int, _ den: Int) {
         let g = Rational.gcd(num, den)
         let sign = (den < 0) ? -1 : 1
@@ -30,11 +37,19 @@ struct Rational: Equatable {
         }
     }
     
+    /// Constructor
+    /// - Parameter num: Numerator
+    /// Creates an integer rational
     init(_ num: Int) {
         self.num = num
         self.den = 1
     }
-
+    
+    /// Greatest common divisor
+    /// - Parameters:
+    ///   - a: Int A parameter
+    ///   - b: Int B parameter
+    /// - Returns: greatest common divisor using Euklid
     static func gcd(_ a: Int, _ b: Int) -> Int {
         var x = abs(a)
         var y = abs(b)
@@ -48,6 +63,7 @@ struct Rational: Equatable {
 
 }
 
+/// Prsenting the Rational as String
 extension Rational: CustomStringConvertible {
     
     var description: String {
@@ -55,6 +71,9 @@ extension Rational: CustomStringConvertible {
         return den == 1 ? "\(num)" : "\(num)/\(den)"
     }
     
+    /// Format the Rational as StrIng
+    /// - Parameter signed: Must be true to display "+" sign
+    /// - Returns: String description of the Rational like +7/8
     func formatted(signed: Bool) -> String {
         guard den != 0 else { return "?" }
         if signed {
@@ -63,7 +82,6 @@ extension Rational: CustomStringConvertible {
         }
         else {
             return den == 1 ? "\(num)" : "\(num)/\(den)"
-
         }
     }
 
@@ -75,11 +93,7 @@ struct RationalFormatStyle: ParseableFormatStyle {
     typealias FormatOutput = String
     
     // Conformance to ParseableFormatStyle provides the parser for TextFields
-    //var parseStrategy: RationalParseStrategy {
-    //    RationalParseStrategy()
-    //}
     var parseStrategy = RationalParseStrategy()
-
     
     // Formats the Rational struct into a String (e.g., 3/4)
     func format(_ value: Rational) -> String {
@@ -95,7 +109,6 @@ struct SignedRationalFormatStyle: ParseableFormatStyle {
     // Conformance to ParseableFormatStyle provides the parser for TextFields
     var parseStrategy = RationalParseStrategy()
 
-    
     // Formats the Rational struct into a String (e.g., 3/4)
     func format(_ value: Rational) -> String {
         return value.formatted(signed: true)
@@ -108,6 +121,9 @@ struct RationalParseStrategy: ParseStrategy {
     typealias ParseInput = String
     typealias ParseOutput = Rational
     
+    /// Parse using split (currently not used)
+    /// - Parameter value: String to parse for a rational
+    /// - Returns: Rational
     func parse2(_ value: String) -> Rational {
         let components = value.split(separator: "/")
         let num = Int(components[0].trimmingCharacters(in: .whitespaces)) ?? 0
@@ -122,6 +138,9 @@ struct RationalParseStrategy: ParseStrategy {
         }
     }
     
+    /// Parse using Regexbuilder
+    /// - Parameter value: String to parse for a rational
+    /// - Returns: Rational
     func parse(_ value: String) -> Rational {
         let signRegex = ZeroOrMore(CharacterClass.anyOf("+-"))
         let signedIntRegex = Capture {
@@ -160,6 +179,7 @@ extension FormatStyle where Self == RationalFormatStyle {
     }
 }
 
+/// Algebraic rules for Rational
 extension Rational {
     static func +(lhs: Rational, rhs: Rational) -> Rational {
         let n = lhs.num * rhs.den + rhs.num * lhs.den
@@ -204,19 +224,8 @@ extension Rational {
 
 }
 
+/// Swiftui extensions to set and get the bound value
 extension Rational {
-
-    static func parsed(from string: String) -> Rational {
-        let parts = string.components(separatedBy: "/")
-        switch parts.count {
-        case 0:
-            return Rational(0)
-        case 1:
-            return Rational(Int(parts[0]) ?? 0)
-        default:
-            return Rational(Int(parts[0]) ?? 0, Int(parts[1]) ?? 1)
-        }
-    }
 
     static func binding(
         get: @escaping () -> Rational,
@@ -227,12 +236,12 @@ extension Rational {
             set: set
         )
     }
-
     
 }
 
+/// Rational must be Codable for save and load (Methods are added automatically)
 extension Rational: Codable {
-        
+
 }
 
 

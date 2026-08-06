@@ -9,15 +9,19 @@
 import SwiftUI
 import AppKit
 
+/// Accessing bundle info
 class BundleInfo {
+    /// Returns the app name
     static var appName: String {
         infoDir?["CFBundleExecutable"] as? String ?? "..."
     }
     
+    /// Returns the bundle id
     static var bundleId: String {
         infoDir?["CFBundleIdentifier"] as? String ?? "..."
     }
     
+    /// Returns the app version
     static var bundleVersion: String {
         infoDir?["CFBundleVersion"] as? String ?? "..."
     }
@@ -29,6 +33,7 @@ class BundleInfo {
 
 }
 
+/// View for a simple
 struct AboutView: View {
     @State private var isShowingDialog = false
     var body: some View {

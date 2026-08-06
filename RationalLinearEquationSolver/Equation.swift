@@ -9,7 +9,8 @@
 import Cocoa
 import UniformTypeIdentifiers
 
-struct Equation: Codable {
+/// codable class to store and retrieve matrix and inhomogeneous part
+class Equation: Codable {
     var name: String
     var inhomogeneous: Vector
     var matrix: Matrix
@@ -29,7 +30,7 @@ struct Equation: Codable {
         self.matrix = matrix
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         self.name = "Solver"
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
@@ -38,6 +39,10 @@ struct Equation: Codable {
     }
 
     
+    /// store  matrix and inhomogeneous part
+    /// - Parameters:
+    ///   - A: square matrix
+    ///   - b: inhomogeneous part
     static func save(A: Matrix, b: Vector) {
         Task {
             let savePanel = NSSavePanel()
@@ -55,6 +60,10 @@ struct Equation: Codable {
         }
     }
     
+    /// retrieve matrix and inhomogeneous part
+    /// - Returns: tuple with
+    ///   - A: square matrix
+    ///   - b: inhomogeneous part
     static func load() -> (Matrix, Vector) {
         let openPanel = NSOpenPanel()
         openPanel.allowedContentTypes = [.json, .plainText]
@@ -64,7 +73,7 @@ struct Equation: Codable {
                 let equation = try JSONDecoder().decode(Equation.self, from: data)
                 return (equation.matrix, equation.inhomogeneous)
             } catch {
-                print("Error during read")
+                print(error)//"Error during read")
             }
         }
         return (Matrix(count: 0), Vector())

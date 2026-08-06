@@ -28,7 +28,7 @@ struct EmptyCommands: Commands {
     }
 }
 
-
+/// Application menu entries for "About', 'Load' and 'save'
 @main
 struct RationalLinearEquationSolverApp: App {
     @Environment(\.openWindow) private var openWindow
@@ -69,10 +69,6 @@ struct RationalLinearEquationSolverApp: App {
             AboutView()
         }
         .defaultSize(width: 350, height: 200)
-        
-        
-        
-        
         
     }
 }

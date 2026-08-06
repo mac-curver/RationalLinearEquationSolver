@@ -9,43 +9,34 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-func makeFilesThatUserCanAccessOutsideThisApp() {
-    guard let docFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-        fatalError()
-    }
-    let contents = "Some text..."
-    let mySOFileNameA = "MySOFileA.txt"
-    let mySOFileNameB = "MySOFileB.txt"
-    let mySOFolderUrl = docFolder.appendingPathComponent("MySOFolder")
-
-    do {
-        // write one file at the top level:
-        try contents.write(to: docFolder.appendingPathComponent(mySOFileNameA), atomically: true, encoding: .utf8)
-        // write two files into the subdirectory (after first creating the subdirectory if necessary):
-        try FileManager.default.createDirectory(at: mySOFolderUrl, withIntermediateDirectories: true, attributes: nil)
-        try contents.write(to: mySOFolderUrl.appendingPathComponent(mySOFileNameA), atomically: true, encoding: .utf8)
-        try contents.write(to: mySOFolderUrl.appendingPathComponent(mySOFileNameB), atomically: true, encoding: .utf8)
-    }
-    catch {
-        fatalError(error.localizedDescription)
-    }
-}
 
 
+
+/// View for the main window
 struct ContentView: View {
+    /*
     /// Creates the alphabetic lowercase letters from "a"..."z"
     var letters: [String] {
         (10...35).map { String($0, radix: 36) }
     }
+     */
+    /// Max 10 variables for the equation
     static let variables = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
-
+    
+    /// Quadratic coefficient max for the homogenous equation
     @State var matrix = Matrix(count: 2)
+    
+    /// Vector of the inhomogenous solution
     @State var inhomogeneous = Vector(value: Rational(1), count: 2)
     
-    @State private var inhomogeneousBackup = Vector(value: Rational(1), count: variables.count)
+    /// Two backup storages to remember settings
     @State private var matrixBackup = Matrix(count: variables.count)
+    @State private var inhomogeneousBackup = Vector(value: Rational(1), count: variables.count)
+    
+    /// Used to show error alert
     @State private var showAlert = false
     
+    /// Called from outside
     func load() {
         var newMatrix = Matrix(count: 0)
         var newVector = Vector()
@@ -58,21 +49,26 @@ struct ContentView: View {
             showAlert = true
         }
     }
-    
 
+    
+    /// Main view body
     var body: some View {
         VStack {
             VStack {
                 Form{
+                    /// Plot the equation
                     ForEach(0..<matrix.count, id: \.self) { row in
                         
                         HStack {
+                            /// Plot the equation matrix 1st column without "+" sign
                             MatrixElement(value: matrix.binding(row: row, column: 0), variable: ContentView.variables[0], format: .rational
                             )
+                            /// Plot the equation matrix remaining columns with sign
                             ForEach(1..<matrix.count, id: \.self) { column in
                                 MatrixElement(value: matrix.binding(row: row, column: column), variable: ContentView.variables[column], format: .signedRational
                                 )
                             }
+                            /// Plot the last column with the inhomogeneous values
                             Text(" = ")
                             TextField("", value: inhomogeneous.binding(at: row), format: .rational)
                                 .multilineTextAlignment(.trailing)
@@ -80,6 +76,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                /// Plot the solution using Cramers method
                 if matrix.count < Matrix.MaxCramer {
                     Text("===== Cramer \(matrix.elapsedCramer) s =======")
                     ForEach(0..<matrix.count, id: \.self) { row in
@@ -87,7 +84,7 @@ struct ContentView: View {
                         Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
                     }
                 }
-                
+                /// Plot the solution using Gauss elimination method
                 Text("===== Gauss \(matrix.elapsedGauss) s =======")
                 ForEach(0..<matrix.count, id: \.self) { row in
                     let solution = matrix.solveGaussianExact(inhomogeneous)
@@ -98,6 +95,7 @@ struct ContentView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        /// Add 4 buttons for add, delete, load and save
         .toolbar {
             ToolbarItem() {
                 Button(action:{
@@ -119,7 +117,7 @@ struct ContentView: View {
             }
             ToolbarItem() {
                 Button(action:{
-                    load() 
+                    load()
                 }) {
                     Text("Load...")
                 }

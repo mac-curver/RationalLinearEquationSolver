@@ -74,6 +74,7 @@ import SwiftUI
     }
 }
 
+/// Vector must be Codable for save and load
 extension Vector: Codable {
     enum CodingKeys: String, CodingKey {
         case vector
