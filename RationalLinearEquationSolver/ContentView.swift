@@ -14,19 +14,21 @@ import UniformTypeIdentifiers
 
 /// View for the main window
 struct ContentView: View {
-    /*
+    
     /// Creates the alphabetic lowercase letters from "a"..."z"
-    var letters: [String] {
+     
+    static var variables: [String] {
         (10...35).map { String($0, radix: 36) }
     }
-     */
+    /*
     /// Max 10 variables for the equation
     static let variables = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+     */
     
     /// Quadratic coefficient max for the homogenous equation
     @State var matrix = Matrix(count: 2)
     
-    /// Vector of the inhomogenous solution
+    /// Vector of the inhomogeneous solution
     @State var inhomogeneous = Vector(value: Rational(1), count: 2)
     
     /// Two backup storages to remember settings
@@ -53,93 +55,99 @@ struct ContentView: View {
     
     /// Main view body
     var body: some View {
-        VStack {
+        ScrollView([.horizontal, .vertical]) {
             VStack {
-                Form{
-                    /// Plot the equation
-                    ForEach(0..<matrix.count, id: \.self) { row in
-                        
-                        HStack {
-                            /// Plot the equation matrix 1st column without "+" sign
-                            MatrixElement(value: matrix.binding(row: row, column: 0), variable: ContentView.variables[0], format: .rational
-                            )
-                            /// Plot the equation matrix remaining columns with sign
-                            ForEach(1..<matrix.count, id: \.self) { column in
-                                MatrixElement(value: matrix.binding(row: row, column: column), variable: ContentView.variables[column], format: .signedRational
+                VStack {
+                    Form{
+                        /// Plot the equation
+                        ForEach(0..<matrix.count, id: \.self) { row in
+                            
+                            HStack {
+                                /// Plot the equation matrix 1st column without "+" sign
+                                MatrixElement(value: matrix.binding(row: row, column: 0), variable: ContentView.variables[0], format: .rational
                                 )
+                                .frame(width: 120)
+                                /// Plot the equation matrix remaining columns with sign
+                                ForEach(1..<matrix.count, id: \.self) { column in
+                                    MatrixElement(value: matrix.binding(row: row, column: column), variable: ContentView.variables[column], format: .signedRational
+                                    )
+                                    .frame(width: 120)
+                                }
+                                /// Plot the last column with the inhomogeneous values
+                                Text(" = ")
+                                TextField("", value: inhomogeneous.binding(at: row), format: .rational)
+                                    .multilineTextAlignment(.trailing)
+                                    .frame(width:80)
                             }
-                            /// Plot the last column with the inhomogeneous values
-                            Text(" = ")
-                            TextField("", value: inhomogeneous.binding(at: row), format: .rational)
-                                .multilineTextAlignment(.trailing)
-                                .frame(width:80)
                         }
                     }
-                }
-                /// Plot the solution using Cramers method
-                if matrix.count < Matrix.MaxCramer {
-                    Text("===== Cramer \(matrix.elapsedCramer) s =======")
+                    /// Plot the solution using Cramers method
+                    if matrix.count < Matrix.MaxCramer {
+                        Text("===== Cramer \(matrix.elapsedCramer) s =======")
+                        ForEach(0..<matrix.count, id: \.self) { row in
+                            let solution = matrix.solveCramer(inhomogeneous)
+                            Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
+                        }
+                    }
+                    /// Plot the solution using Gauss elimination method
+                    Text("===== Gauss \(matrix.elapsedGauss) s =======")
                     ForEach(0..<matrix.count, id: \.self) { row in
-                        let solution = matrix.solveCramer(inhomogeneous)
+                        let solution = matrix.solveGaussianExact(inhomogeneous)
                         Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
                     }
-                }
-                /// Plot the solution using Gauss elimination method
-                Text("===== Gauss \(matrix.elapsedGauss) s =======")
-                ForEach(0..<matrix.count, id: \.self) { row in
-                    let solution = matrix.solveGaussianExact(inhomogeneous)
-                    Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
+                    
                 }
                 
             }
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            /// Add 4 buttons for add, delete, load and save
+            .toolbar {
+                ToolbarItem() {
+                    Button(action:{
+                        matrix.addCount(backup: matrixBackup)
+                        inhomogeneous.addCount(backup: inhomogeneousBackup)
+                    }) {
+                        Text("Add row/column")
+                    }
+                    .disabled(matrix.count>=ContentView.variables.count)
+                }
+                ToolbarItem() {
+                    Button(action:{
+                        matrix.deleteCount(backup: matrixBackup)
+                        inhomogeneous.deleteCount(backup: inhomogeneousBackup)
+                    }) {
+                        Text("Delete row/column")
+                    }
+                    .disabled(matrix.count<=1)
+                }
+                ToolbarItem() {
+                    Button(action:{
+                        load()
+                    }) {
+                        Text("Load...")
+                    }
+                    .frame(width: 120)
+                }
+                ToolbarItem() {
+                    Button(action:{
+                        Equation.save(A: matrix, b:inhomogeneous)
+                        
+                    }) {
+                        Text("Save...")
+                    }
+                    .frame(width: 120)
+                }
+                
+            }
+            .alert("File reading error", isPresented: $showAlert) {
+                
+            } message: {
+                Text("Could not read the file")
+            }
             
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        /// Add 4 buttons for add, delete, load and save
-        .toolbar {
-            ToolbarItem() {
-                Button(action:{
-                    matrix.addCount(backup: matrixBackup)
-                    inhomogeneous.addCount(backup: inhomogeneousBackup)
-                }) {
-                    Text("Add row/column")
-                }
-                .disabled(matrix.count>=ContentView.variables.count)
-            }
-            ToolbarItem() {
-                Button(action:{
-                    matrix.deleteCount(backup: matrixBackup)
-                    inhomogeneous.deleteCount(backup: inhomogeneousBackup)
-                }) {
-                    Text("Delete row/column")
-                }
-                .disabled(matrix.count<=1)
-            }
-            ToolbarItem() {
-                Button(action:{
-                    load()
-                }) {
-                    Text("Load...")
-                }
-                .frame(width: 120)
-            }
-            ToolbarItem() {
-                Button(action:{
-                    Equation.save(A: matrix, b:inhomogeneous)
-
-                }) {
-                    Text("Save...")
-                }
-                .frame(width: 120)
-            }
-
-        }
-        .alert("File reading error", isPresented: $showAlert) {
-            
-        } message: {
-            Text("Could not read the file")
-        }
-        
+        .defaultScrollAnchor(.top)
     }
 }
 
