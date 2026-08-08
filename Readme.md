@@ -39,7 +39,7 @@ LegoEsprit@kabelbw.de
 
 ## Original version
 
-[GIT](https://github.com/)
+https://github.com/mac-curver/RationalLinearEquationSolver?tab=readme-ov-file
 
 ## License
 
