@@ -84,15 +84,15 @@ struct ContentView: View {
                     /// Plot the solution using Cramers method
                     if matrix.count < Matrix.MaxCramer {
                         Text("===== Cramer \(matrix.elapsedCramer) s =======")
+                        let solution = matrix.solveCramer(inhomogeneous)
                         ForEach(0..<matrix.count, id: \.self) { row in
-                            let solution = matrix.solveCramer(inhomogeneous)
                             Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
                         }
                     }
                     /// Plot the solution using Gauss elimination method
                     Text("===== Gauss \(matrix.elapsedGauss) s =======")
+                    let solution = matrix.solveGaussianExact(inhomogeneous)
                     ForEach(0..<matrix.count, id: \.self) { row in
-                        let solution = matrix.solveGaussianExact(inhomogeneous)
                         Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
                     }
                     

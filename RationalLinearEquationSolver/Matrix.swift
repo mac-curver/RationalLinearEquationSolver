@@ -123,6 +123,12 @@ import SwiftUI
 extension Matrix {
     static var MaxCramer = 7
     
+    /// Build matrix for Cramers solution
+    /// - Parameters:
+    ///   - A: Original matrix
+    ///   - column: Replacement column
+    ///   - index: column index
+    /// - Returns: Matrix where the column at index is replaced by vector
     func insertColumn(_ A: Matrix, column: Vector, at index: Int) -> Matrix {
         let B = Matrix(matrix: A) // must be a deep copy!
         for i in 0..<A.count {
@@ -131,6 +137,9 @@ extension Matrix {
         return B
     }
     
+    /// Solve linear equation system using Cramers solution
+    /// - Parameter b: Inhomogeneous vector
+    /// - Returns: Solution of the linear equation system as vector
     func solveCramer(_ b: Vector) -> Vector {
         let startTime = Date().timeIntervalSince1970
         let n = count
@@ -156,11 +165,18 @@ extension Matrix {
 
 /// MARK: - Gauss solver
 extension Matrix {
-
+    
+    /// Swap two matrix elements
+    /// - Parameters:
+    ///   - i: First index fow the swap
+    ///   - j: Second index
     func swapAt(_ i: Int, _ j: Int) {
         matrix.swapAt(i, j)
     }
     
+    /// Gauss elimination to solve a linear equation system
+    /// - Parameter b: Inhomogeneous vector
+    /// - Returns: Solution of the linear equation system as vector
     func solveGaussianExact(_ b: Vector) -> Vector {
         let startTime = Date().timeIntervalSince1970
         let n = count
@@ -216,6 +232,7 @@ extension Matrix {
 
 }
 
+/// Extension to make Matrix codable
 extension Matrix: Codable {
     enum CodingKeys: String, CodingKey {
         case matrix
