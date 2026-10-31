@@ -17,6 +17,7 @@ import SwiftUI
     var elapsedCramer: Double = 0.0
     var elapsedGauss: Double = 0.0
 
+    /// Create a unity matrix with dimension
     init(count: Int) {
         matrix = (0..<count).map { i in
             (0..<count).map { j in
@@ -26,14 +27,18 @@ import SwiftUI
         }
     }
     
+    /// Create a  matrix by copying an existing Matrix
     private init(matrix newMatrix: Matrix) {
         matrix = newMatrix.matrix
     }
     
+    /// Create a  matrix using a 2 dim array of Rational
     private init(twoDim newMatrix: [[Rational]]) {
         matrix = newMatrix
     }
-
+    
+    /// Increase Matrix dimension by 1
+    /// - Parameter backup: Take missing values from here if they exists
     func addCount(backup: Matrix) {
         for row in 0..<matrix.count {
             matrix[row].append(backup[row, count] )
@@ -42,6 +47,8 @@ import SwiftUI
         matrix.append(Array(backup.matrix[row][0...row]))
     }
     
+    /// Decrease Matrix dimension by 1
+    /// - Parameter backup:Move hiding values from here to remember
     func deleteCount(backup: Matrix) {
         if count > 1 {
             let lastRowIndex = count-1
@@ -58,6 +65,7 @@ import SwiftUI
         //print(matrix)
     }
 
+    /// Allows to index with [v,  h]
     subscript(row: Int, column: Int) -> Rational {
         get {
             return matrix[row][column]
@@ -67,6 +75,7 @@ import SwiftUI
         }
     }
 
+    /// Forward Rational binding to matrix element
     func binding(row: Int, column: Int) -> Binding<Rational> {
         Rational.binding(
             get: {
@@ -84,6 +93,12 @@ import SwiftUI
         )
     }
     
+    /// Quadratic sub matrix by removing a row and a column
+    /// - Parameters:
+    ///   - A: Matrix to be made smaller
+    ///   - r: row as Int
+    ///   - c: column as Int
+    /// - Returns: Matrix with column, row removed
     private static func minor(of A: Matrix, removingRow r: Int, removingCol c: Int) -> Matrix {
         var m: [[Rational]] = []
         for i in 0..<A.count {
@@ -97,7 +112,10 @@ import SwiftUI
         }
         return Matrix(twoDim: m)
     }
-
+    
+    /// Calculate the determinant of a Matrix
+    /// - Parameter A: The matrix to be used
+    /// - Returns: Determinant of A as Rational
     private static func determinant(_ A: Matrix) -> Rational {
         let n = A.count
 
@@ -113,7 +131,8 @@ import SwiftUI
         }
         return result
     }
-
+    
+    /// Determinant of self
     var det: Rational {
         Matrix.determinant(self)
     }
@@ -163,12 +182,12 @@ extension Matrix {
     
 }
 
-/// MARK: - Gauss solver
+/// MARK: - Gauss solvers
 extension Matrix {
     
     /// Swap two matrix elements
     /// - Parameters:
-    ///   - i: First index fow the swap
+    ///   - i: First index for the swap
     ///   - j: Second index
     func swapAt(_ i: Int, _ j: Int) {
         matrix.swapAt(i, j)
@@ -234,6 +253,7 @@ extension Matrix {
 
 /// Extension to make Matrix codable
 extension Matrix: Codable {
+    
     enum CodingKeys: String, CodingKey {
         case matrix
     }

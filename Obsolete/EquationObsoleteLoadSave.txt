@@ -1,0 +1,120 @@
+Equation Obsolete load and save.swift
+
+    /*
+    /// store  matrix and inhomogeneous part
+    /// - Parameters:
+    ///   - view: the ContentView
+    func save(view: ContentView) {
+        Task {
+            let savePanel = NSSavePanel()
+            savePanel.nameFieldStringValue = "Untitled"
+            savePanel.allowedContentTypes = [.json, .plainText]
+            if await savePanel.begin() == .OK, let url = savePanel.url {
+                do {
+                    let document = Equation(matrix: view.matrix, inhomogeneous: view.inhomogeneous)
+                    print("Save:", terminator: "")
+                    for h in 0..<matrix.count {
+                        print("\(view.matrix[h, 0])", terminator: "")
+                    }
+                    print("")
+                    let data = try JSONEncoder().encode(document)
+                    try data.write(to: url)
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    /// retrieve matrix and inhomogeneous part
+    /// - Returns: tuple with
+    ///   - A: square matrix
+    ///   - b: inhomogeneous part
+    func load(view: ContentView) -> Bool {
+        let openPanel = NSOpenPanel()
+        openPanel.allowedContentTypes = [.json, .plainText]
+        if openPanel.runModal() == .OK, let url = openPanel.url {
+            do {
+                let data = try Data(contentsOf: url)
+                let equation = try JSONDecoder().decode(Equation.self, from: data)
+                if matrix.count > 0 {
+                    view.matrix = equation.matrix
+                    view.inhomogeneous = equation.inhomogeneous
+                    print("Load:", terminator: "")
+                    for h in 0..<matrix.count {
+                        print("\(view.matrix[h, 0])", terminator: "")
+                    }
+                    print("")
+                    
+                    return true
+                }
+                return false
+            } catch {
+                print(error)//"Error during read")
+            }
+        }
+
+        return false
+
+    }
+    */
+    /*
+
+    /// store  matrix and inhomogeneous part
+    /// - Parameters:
+    func save() {
+        Task {
+            let savePanel = NSSavePanel()
+            savePanel.nameFieldStringValue = "Untitled"
+            savePanel.allowedContentTypes = [.json, .plainText]
+            if await savePanel.begin() == .OK, let url = savePanel.url {
+                do {
+                    //let document = Equation(matrix: A, inhomogeneous: b)
+                    let document = Equation()
+
+                    print("Save:", terminator: "")
+                    for h in 0..<matrix.count {
+                        print("\(matrix[h, 0])", terminator: ", ")
+                    }
+                    print("")
+
+                    let data = try JSONEncoder().encode(document)
+                    try data.write(to: url)
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    
+    
+
+    /// retrieve matrix and inhomogeneous part
+    /// - Returns: tuple with
+    ///   - A: square matrix
+    ///   - b: inhomogeneous part
+    func load() -> Bool {
+        let openPanel = NSOpenPanel()
+        openPanel.allowedContentTypes = [.json, .plainText]
+        if openPanel.runModal() == .OK, let url = openPanel.url {
+            do {
+                let data = try Data(contentsOf: url)
+                let equation = try JSONDecoder().decode(Equation.self, from: data)
+                
+                if equation.matrix.count > 0 {
+                    matrix = equation.matrix
+                    inhomogeneous = equation.inhomogeneous
+                }
+                
+                printMatrix(title: "load")
+
+                return true
+            } catch {
+                print(error)//"Error during read")
+            }
+        }
+        return false
+
+    }
+     */

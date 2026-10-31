@@ -29,46 +29,59 @@ struct EmptyCommands: Commands {
 }
 
 /// Application menu entries for "About', 'Load' and 'save'
+/// I had hard times to make Equation bindable and to avoid having multiple instances at the
+/// same time making save and load from main menu not working properly.
 @main
 struct RationalLinearEquationSolverApp: App {
-    @Environment(\.openWindow) private var openWindow
-    
-    var contentView = ContentView()
     
 
+    var contentView: ContentView
+    @State private var equation = Equation()
+    
+    init() {
+        /*
+        let uniqueState = WindowState()
+        contentView = ContentView(model: uniqueState)
+         */
+        contentView = ContentView()
+    }
+    
     var body: some Scene {
         WindowGroup {
             contentView
         }
-        .commandsRemoved() // remove standard menu items!
+        /*
+        //.commandsRemoved() // remove standard menu items!
         .commands {
-            CommandGroup(after: .newItem) {
-                Button("Load...", systemImage: "arrow.up.forward.square") {
-                    contentView.load()
-                }
-                .keyboardShortcut("O")
-                
-                Button("Save...", systemImage: "square.and.arrow.down") {
-                    Equation.save(A: contentView.matrix, b:contentView.inhomogeneous)
-                }
-                .keyboardShortcut("S")
-            }
-            CommandGroup(replacing: CommandGroupPlacement.appInfo) {
-                Button(action: {
-                    // Open the "about" window
-                    openWindow(id: "about")
-                }, label: {
-                    Text("About \(BundleInfo.appName)…")
-                })
-            }
-            
+            //MacMenuCommands(using: contentView)
         }
         
-        //// Note the id "about" here
-        WindowGroup("About \(BundleInfo.appName)…", id: "about") {
-            AboutView()
+        // 2. Build your custom-sized window
+        Window("About \(Bundle.main.appName)", id: "about-panel") {
+            let credits = """
+                     This app allows you to solve a set of linear
+                     equations with given factional coefficients
+                     precisely as long as numerator and
+                     denominator stay within the Int range.
+                     Id: \(Bundle.main.bundleId)
+                     
+                     Version \(Bundle.main.version) (Build \(Bundle.main.build))
+                     \(Bundle.main.copyright)
+                     """
+            VStack(spacing: 12) {
+                Image(nsImage: NSApplication.shared.applicationIconImage)
+                    .resizable()
+                    .frame(width: 64, height: 64)
+                Text("\(Bundle.main.appName)").font(.headline)
+                Text(credits).font(.subheadline)
+            }
+            .padding()
+            .frame(minWidth: 450, minHeight: 300) // 👈 Set your custom width here
         }
-        .defaultSize(width: 350, height: 200)
+        .windowResizability(.contentSize)
+        .defaultLaunchBehavior(.suppressed)
+         */
+
         
     }
 }

@@ -9,14 +9,23 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+/*
+@Observable
+class WindowState {
+    // This state will be unique to each window
+    //var equation:Equation = Equation()
+}
+ */
 
 
 
 /// View for the main window
 struct ContentView: View {
     
+    static let loadMessage = "Please chose a linear equation (.json)"
+    static let saveMessage = "Please enter a name for the linear equation"
+
     /// Creates the alphabetic lowercase letters from "a"..."z"
-     
     static var variables: [String] {
         (10...35).map { String($0, radix: 36) }
     }
@@ -24,37 +33,23 @@ struct ContentView: View {
     /// Max 10 variables for the equation
     static let variables = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
      */
-    
-    /// Quadratic coefficient max for the homogenous equation
-    @State var matrix = Matrix(count: 2)
-    
-    /// Vector of the inhomogeneous solution
-    @State var inhomogeneous = Vector(value: Rational(1), count: 2)
-    
-    /// Two backup storages to remember settings
+
+    //@Bindable var model: WindowState
+
+    @State var equation = Equation()
+
+    /// Two backup storages to remember settings when matrix re-increases
     @State private var matrixBackup = Matrix(count: variables.count)
     @State private var inhomogeneousBackup = Vector(value: Rational(1), count: variables.count)
     
     /// Used to show error alert
-    @State private var showAlert = false
-    
-    /// Called from outside
-    func load() {
-        var newMatrix = Matrix(count: 0)
-        var newVector = Vector()
-        (newMatrix, newVector) = Equation.load()
-        if newMatrix.count > 0 {
-            matrix = newMatrix
-            inhomogeneous = newVector
-        }
-        else {
-            showAlert = true
-        }
-    }
+    @State public var showAlert = false
 
     
     /// Main view body
     var body: some View {
+        let matrix = equation.matrix
+        let inhomogeneous = equation.inhomogeneous
         ScrollView([.horizontal, .vertical]) {
             VStack {
                 VStack {
@@ -123,20 +118,20 @@ struct ContentView: View {
                 }
                 ToolbarItem() {
                     Button(action:{
-                        load()
+                        equation.load(text: ContentView.loadMessage)
+                        showAlert = matrix.count < 1
                     }) {
                         Text("Load...")
+                        .frame(width: 120)
                     }
-                    .frame(width: 120)
                 }
                 ToolbarItem() {
                     Button(action:{
-                        Equation.save(A: matrix, b:inhomogeneous)
-                        
+                        equation.save(text: ContentView.saveMessage)
                     }) {
                         Text("Save...")
+                        .frame(width: 120)
                     }
-                    .frame(width: 120)
                 }
                 
             }
@@ -152,5 +147,6 @@ struct ContentView: View {
 }
 
 #Preview {
+    //ContentView(model: WindowState())
     ContentView()
 }

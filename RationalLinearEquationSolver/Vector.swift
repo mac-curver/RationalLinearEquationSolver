@@ -26,7 +26,8 @@ import SwiftUI
     
     init() {
         // Invalid entry
-        vector = [Rational](repeating: Rational.invalid, count: ContentView.variables.count)
+        //vector = [Rational](repeating: Rational.invalid, count: ContentView.variables.count)
+        vector = [Rational](repeating: 1, count: 2)
     }
     
     func addCount(backup: Vector) {

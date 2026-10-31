@@ -11,16 +11,15 @@ import SwiftUI
 import RegexBuilder
 
 /// Struct for fractions as num, den, where num and den are Int
-struct Rational: Equatable {
+struct Rational: Equatable, Comparable {
     var num: Int
     var den: Int
-    var approx: Double {
-        return Double(num) / Double(den)
-    }
+    
     /// One, zero and invalid elements as static
     static let one = Rational(1)
     static let zero = Rational(0)
     static let invalid = Rational(1, 0)
+    
     
     /// Constructor
     /// - Parameters:
@@ -60,10 +59,127 @@ struct Rational: Equatable {
         }
         return x == 0 ? 1 : x
     }
+    
+    
+    // Standard cross-multiplication for comparison (assuming positive denominators)
+    static func < (lhs: Rational, rhs: Rational) -> Bool {
+        
+        let q1 = lhs.num / lhs.den
+        let q2 = rhs.num / rhs.den
+        
+        if q1 < q2 { return false }
+        if q1 > q2 { return true }
+        
+        let r1 = lhs.num % lhs.den
+        let r2 = rhs.num % rhs.den
+        
+        if r1 == 0 && r2 == 0 { return true }
+        if r1 == 0 { return false }
+        if r2 == 0 { return true }
+        
+        return Rational(lhs.den, r1) < Rational(rhs.den, r2)
+        
+        
+        //return lhs.num * rhs.den < rhs.num * lhs.den
+    }
 
 }
 
-/// Prsenting the Rational as String
+extension Rational: ExpressibleByIntegerLiteral {
+    init(integerLiteral value: Int) {
+        self.init(value, 1)
+    }
+}
+
+/*
+// Now you can easily write a generic operator for any BinaryInteger (Int, Int8, UInt64, etc.)
+// This covers Int < Rational and Rational < Int automatically!
+// but I get conflict with Double methods
+extension Rational {
+    static func < <T: BinaryInteger>(lhs: T, rhs: Rational) -> Bool {
+        return Rational(Int(lhs), 1) < rhs
+    }
+    
+    static func < <T: BinaryInteger>(lhs: Rational, rhs: T) -> Bool {
+        return lhs < Rational(Int(rhs), 1)
+    }
+
+    static func == <T: BinaryInteger>(lhs: T, rhs: Rational) -> Bool {
+        return Rational(Int(lhs), 1) == rhs
+    }
+    
+    static func == <T: BinaryInteger>(lhs: Rational, rhs: T) -> Bool {
+        return lhs == Rational(Int(rhs), 1)
+    }
+}
+ */
+
+// 1. Define a protocol that gives all comparison operators for free
+protocol DoubleComparable {
+    var doubleValue: Double { get }
+}
+
+// 2. Implement the 8 required operators ONCE for any DoubleComparable type
+extension DoubleComparable {
+    // Rational vs Double
+    static func < (lhs: Self, rhs: Double) -> Bool {
+        lhs.doubleValue < rhs
+    }
+    static func > (lhs: Self, rhs: Double) -> Bool { lhs.doubleValue > rhs }
+    static func <= (lhs: Self, rhs: Double) -> Bool { lhs.doubleValue <= rhs }
+    static func >= (lhs: Self, rhs: Double) -> Bool { lhs.doubleValue >= rhs }
+
+    // Double vs Rational
+    static func < (lhs: Double, rhs: Self) -> Bool {
+        lhs < rhs.doubleValue
+    }
+    static func > (lhs: Double, rhs: Self) -> Bool { lhs > rhs.doubleValue }
+    static func <= (lhs: Double, rhs: Self) -> Bool { lhs <= rhs.doubleValue }
+    static func >= (lhs: Double, rhs: Self) -> Bool { lhs >= rhs.doubleValue }
+    
+    // Equatability
+    static func == (lhs: Self, rhs: Double) -> Bool { lhs.doubleValue == rhs }
+    static func == (lhs: Double, rhs: Self) -> Bool { lhs == rhs.doubleValue }
+}
+
+// 3. Simply conform your Rational struct to it!
+extension Rational: DoubleComparable {
+    var doubleValue: Double {
+        return Double(num) / Double(den)
+    }
+}
+
+protocol IntComparable {
+    // We reuse your cross-multiplication logic for perfect integer precision
+    static func < (lhs: Self, rhs: Int) -> Bool
+    static func < (lhs: Int, rhs: Self) -> Bool
+    static func == (lhs: Self, rhs: Int) -> Bool
+    static func == (lhs: Int, rhs: Self) -> Bool
+}
+
+extension IntComparable {
+    // Auto-derive everything else for Int mix-and-match
+    static func > (lhs: Self, rhs: Int) -> Bool { rhs < lhs }
+    static func > (lhs: Int, rhs: Self) -> Bool { rhs < lhs }
+    
+    static func <= (lhs: Self, rhs: Int) -> Bool { !(lhs > rhs) }
+    static func <= (lhs: Int, rhs: Self) -> Bool { !(lhs > rhs) }
+    
+    static func >= (lhs: Self, rhs: Int) -> Bool { !(lhs < rhs) }
+    static func >= (lhs: Int, rhs: Self) -> Bool { !(lhs < rhs) }
+}
+
+// Conform Rational by just providing the base hooks
+extension Rational: IntComparable {
+    static func < (lhs: Rational, rhs: Int) -> Bool { lhs.num < rhs * lhs.den }
+    static func < (lhs: Int, rhs: Rational) -> Bool { lhs * rhs.den < rhs.num }
+    
+    static func == (lhs: Rational, rhs: Int) -> Bool { lhs.num == rhs * lhs.den }
+    static func == (lhs: Int, rhs: Rational) -> Bool { lhs * rhs.den == rhs.num }
+}
+
+
+/// Presenting the Rational as String
 extension Rational: CustomStringConvertible {
     
     var description: String {
@@ -224,6 +340,62 @@ extension Rational {
 
 }
 
+/*
+/// comparing
+extension Rational {
+    static func >(lhs: Rational, rhs: Rational) -> Bool {
+        lhs.num * rhs.den > lhs.den * rhs.num
+    }
+    static func >=(lhs: Rational, rhs: Rational) -> Bool {
+        lhs.num * rhs.den >= lhs.den * rhs.num
+    }
+    
+    static func <(lhs: Rational, rhs: Rational) -> Bool {
+        rhs >= lhs
+    }
+    static func <=(lhs: Rational, rhs: Rational) -> Bool {
+        rhs > lhs
+    }
+    static func ==(lhs: Rational, rhs: Rational) -> Bool {
+        lhs.num * rhs.den == lhs.den * rhs.num
+    }
+    static func !=(lhs: Rational, rhs: Rational) -> Bool {
+        !(lhs == rhs)
+    }
+    
+    static func >(lhs: Int, rhs: Rational) -> Bool {
+        lhs.magnitude * rhs.den > rhs.num
+    }
+    static func >=(lhs: Int, rhs: Rational) -> Bool {
+        lhs * rhs.den >= rhs.num
+    }
+    static func >(lhs: Rational, rhs: Int) -> Bool {
+        lhs.num > rhs * lhs.den
+    }
+    static func >=(lhs: Rational, rhs: Int) -> Bool {
+        lhs.num >= rhs * lhs.den
+    }
+    
+    static func <=(lhs: Int, rhs: Rational) -> Bool {
+        lhs * rhs.den <= rhs.num
+    }
+    static func <(lhs: Int, rhs: Rational) -> Bool {
+        lhs * rhs.den > rhs.num
+    }
+    static func <=(lhs: Rational, rhs: Int) -> Bool {
+        lhs.num <= rhs * lhs.den
+    }
+    static func <(lhs: Rational, rhs: Int) -> Bool {
+        lhs.num < rhs * lhs.den
+    }
+
+    
+
+
+
+}
+ */
+
 /// Swiftui extensions to set and get the bound value
 extension Rational {
 
@@ -239,7 +411,7 @@ extension Rational {
     
 }
 
-/// Rational must be Codable for save and load (Methods are added automatically)
+/// Rational must be codable for save and load (Methods are added automatically)
 extension Rational: Codable {
 
 }

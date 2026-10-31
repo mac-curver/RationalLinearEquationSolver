@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+
+/// Matrix cell to display Rational followed by variable
 struct MatrixElement<Format: ParseableFormatStyle>: View where Format.FormatInput == Rational, Format.FormatOutput == String {
     let matrix: Binding<Rational>
     let text: String
