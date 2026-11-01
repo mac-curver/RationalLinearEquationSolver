@@ -68,25 +68,6 @@ final class Vector {
         vector.swapAt(i, j)
     }
     
-    
-    func binding(at index: Int) -> Binding<Rational> {
-        Rational.binding(
-            get: {
-                Logger.write("binding.get", className: "Vector")
-                if index < self.count {
-                    return self.vector[index]
-                } else {
-                    return Rational.invalid
-                }
-            },
-            set: {
-                Logger.write("binding.set", className: "Vector")
-                if index < self.count {
-                    self.vector[index] = $0
-                }
-            }
-        )
-    }
 }
 
 /// Vector must be Codable for save and load

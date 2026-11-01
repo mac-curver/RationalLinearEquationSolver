@@ -86,25 +86,6 @@ final class Matrix {
         }
     }
 
-    /// Forward Rational binding to matrix element
-    func binding(row: Int, column: Int) -> Binding<Rational> {
-        Rational.binding(
-            get: {
-                Logger.write("binding.get", className: "Matrix")
-                if row < self.count && column < self.count {
-                    return self[row, column]
-                } else {
-                    return Rational.invalid
-                }
-            },
-            set: {
-                Logger.write("binding.set", className: "Matrix")
-                if row < self.count && column < self.count {
-                    self[row, column] = $0
-                }
-            }
-        )
-    }
     
     /// Quadratic sub matrix by removing a row and a column
     /// - Parameters:

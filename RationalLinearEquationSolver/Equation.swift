@@ -8,6 +8,7 @@
 //
 
 import Cocoa
+import SwiftUI
 import UniformTypeIdentifiers
 import Combine
 import os.log
@@ -67,6 +68,28 @@ final class Equation: Codable, ObservableObject {
         Logger.logout("", className: "Equation")
     }
     
+    /// Creates a binding that notifies the view after a matrix element changes.
+    func matrixBinding(row: Int, column: Int) -> Binding<Rational> {
+        Binding(
+            get: { self.matrix[row, column] },
+            set: {
+                self.matrix[row, column] = $0
+                self.objectWillChange.send()
+            }
+        )
+    }
+
+    /// Creates a binding that notifies the view after an inhomogeneous value changes.
+    func inhomogeneousBinding(at index: Int) -> Binding<Rational> {
+        Binding(
+            get: { self.inhomogeneous[index] },
+            set: {
+                self.inhomogeneous[index] = $0
+                self.objectWillChange.send()
+            }
+        )
+    }
+
     /// Add 1 dim to the equation
     /// - Parameter contentView: Used for backup
     /// We need to actively send a notification to update the view

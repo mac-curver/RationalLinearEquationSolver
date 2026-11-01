@@ -27,8 +27,6 @@ struct MacMenuCommands: Commands {
             }
             .keyboardShortcut("S")
             .disabled(equation == nil)
-            .disabled(equation == nil)
-            .disabled(equation == nil)
         }
          
         CommandGroup(replacing: .appInfo) {

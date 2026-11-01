@@ -46,37 +46,42 @@ struct ContentView: View {
                             
                             HStack {
                                 /// Plot the equation matrix 1st column without "+" sign
-                                MatrixElement(value: matrix.binding(row: row, column: 0), variable: ContentView.variables[0], format: .rational
+                                MatrixElement(value: equation.matrixBinding(row: row, column: 0)
+                                              , variable: ContentView.variables[0]
+                                              , format: .rational
                                 )
                                 .frame(width: 120)
                                 /// Plot the equation matrix remaining columns with sign
                                 ForEach(1..<matrix.count, id: \.self) { column in
-                                    MatrixElement(value: matrix.binding(row: row, column: column), variable: ContentView.variables[column], format: .signedRational
+                                    MatrixElement(value: equation.matrixBinding(row: row, column: column)
+                                                  , variable: ContentView.variables[column]
+                                                  , format: .signedRational
                                     )
                                     .frame(width: 120)
                                 }
                                 /// Plot the last column with the inhomogeneous values
                                 Text(" = ")
-                                TextField("", value: inhomogeneous.binding(at: row), format: .rational)
-                                    .multilineTextAlignment(.trailing)
-                                    .frame(width:80)
+                                TextField("", value: equation.inhomogeneousBinding(at: row)
+                                          , format: .rational
+                                )
+                                .multilineTextAlignment(.trailing)
+                                .frame(width:80)
                             }
                         }
                     }
-                    /*
-                    /// Plot the solution using Cramers method
+                    /// Plot the solution using Cramers method only if relatively small
                     if matrix.count < Matrix.MaxCramer {
                         Text("===== Cramer \(matrix.elapsedCramer) s =======")
                         let solution = matrix.solveCramer(inhomogeneous)
-                        ForEach(0..<matrix.count, id: \.self) { row in
+                        ForEach(0..<solution.count, id: \.self) { row in
                             Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
                         }
                     }
-                     */
+        
                     /// Plot the solution using Gauss elimination method
                     Text("===== Gauss \(matrix.elapsedGauss) s =======")
                     let solution = matrix.solveGaussianExact(inhomogeneous)
-                    ForEach(0..<matrix.count, id: \.self) { row in
+                    ForEach(0..<solution.count, id: \.self) { row in
                         Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
                     }
                     
@@ -91,7 +96,7 @@ struct ContentView: View {
                     Button(action:{
                         equation.addCount(contentView: self)
                     }) {
-                        Text("Add row/column")
+                        Text("Increase")
                     }
                     .disabled(matrix.count>=ContentView.variables.count)
                 }
@@ -99,7 +104,7 @@ struct ContentView: View {
                     Button(action:{
                         equation.deleteCount(contentView: self)
                     }) {
-                        Text("Delete row/column")
+                        Text("Decrease")
                     }
                     .disabled(matrix.count<=1)
                 }
@@ -109,7 +114,7 @@ struct ContentView: View {
                         showAlert = matrix.count < 1
                     }) {
                         Text("Load...")
-                        .frame(width: 120)
+                        .frame(width: 70)
                     }
                 }
                 ToolbarItem() {
@@ -117,7 +122,7 @@ struct ContentView: View {
                         equation.save(text: ContentView.saveMessage)
                     }) {
                         Text("Save...")
-                        .frame(width: 120)
+                        .frame(width: 70)
                     }
                 }
                 
