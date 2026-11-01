@@ -12,16 +12,13 @@ import UniformTypeIdentifiers
 import Combine
 import os.log
 
-/// Observable and codable class to store and retrieve matrix and inhomogeneous part
-//@Observable
+/// ObservableObject and codable class to store and retrieve matrix and inhomogeneous part
 final class Equation: Codable, ObservableObject {
     
     var name: String
     var inhomogeneous: Vector
     var matrix: Matrix
     
-    //let objectWillChange: ObservableObjectPublisher
-
     // Explicitly setting the strings with "_" is required to make the class observable
     enum CodingKeys: String, CodingKey {
         case name = "name"

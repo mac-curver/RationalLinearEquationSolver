@@ -26,8 +26,8 @@ struct ContentView: View {
     static let variables = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
      */
 
-    @ObservedObject var equation: Equation
-    @Binding var showAlert: Bool
+    @StateObject private var equation = Equation()
+    @State private var showAlert = false
 
     /// Two backup storages to remember settings when matrix dimension re-increases
     @State var matrixBackup = Matrix(count: variables.count)
@@ -130,9 +130,10 @@ struct ContentView: View {
             
         }
         .defaultScrollAnchor(.top)
+        .focusedSceneObject(equation)
     }
 }
 
 #Preview {
-    ContentView(equation: Equation(), showAlert: .constant(false))
+    ContentView()
 }

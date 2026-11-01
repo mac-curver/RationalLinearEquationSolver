@@ -7,28 +7,28 @@
 //
 
 import SwiftUI
-import Observation
-
 
 struct MacMenuCommands: Commands {
     @Environment(\.openWindow) private var openWindow
 
-    let equation: Equation
-    @Binding var showAlert: Bool
+    @FocusedObject private var equation: Equation?
 
     var body: some Commands {
         
         CommandGroup(after: .newItem) {
             Button("Load...", systemImage: "arrow.up.forward.square") {
-                equation.load(text: ContentView.loadMessage)
-                showAlert = equation.matrix.count < 1
+                equation?.load(text: ContentView.loadMessage)
             }
             .keyboardShortcut("O")
+            .disabled(equation == nil)
             
             Button("Save...", systemImage: "square.and.arrow.down") {
-                equation.save(text: ContentView.saveMessage)
+                equation?.save(text: ContentView.saveMessage)
             }
             .keyboardShortcut("S")
+            .disabled(equation == nil)
+            .disabled(equation == nil)
+            .disabled(equation == nil)
         }
          
         CommandGroup(replacing: .appInfo) {

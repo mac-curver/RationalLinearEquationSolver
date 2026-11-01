@@ -34,16 +34,13 @@ struct EmptyCommands: Commands {
 @main
 struct RationalLinearEquationSolverApp: App {
     
-    @StateObject private var equation = Equation()
-    @State private var showAlert = false
-    
     var body: some Scene {
         WindowGroup {
-            ContentView(equation: equation, showAlert: $showAlert)
+            ContentView()
         }
         //.commandsRemoved() // remove standard menu items!
         .commands {
-            MacMenuCommands(equation: equation, showAlert: $showAlert)
+            MacMenuCommands()
         }
         
         // 2. Build your custom-sized window
