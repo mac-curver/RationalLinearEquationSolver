@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import os.log
 
 
 /// Matrix cell to display Rational followed by variable
@@ -19,11 +20,11 @@ struct MatrixElement<Format: ParseableFormatStyle>: View where Format.FormatInpu
         , variable text: String
         , format: Format
     ) {
-        //self.row = row
-        //self.column = column
+        Logger.login("", className: "MatrixElement")
         self.matrix = matrix
         self.text = text
         self.format = format
+        Logger.logout("", className: "MatrixElement")
     }
     
     

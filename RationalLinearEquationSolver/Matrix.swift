@@ -7,8 +7,9 @@
 //
 
 import SwiftUI
+import os.log
 
-@Observable final class Matrix {
+final class Matrix {
     var count: Int {
         matrix.count
     }
@@ -19,37 +20,47 @@ import SwiftUI
 
     /// Create a unity matrix with dimension
     init(count: Int) {
+        Logger.login("", className: "Matrix")
         matrix = (0..<count).map { i in
             (0..<count).map { j in
                 i == j ? Rational.one : Rational.zero
                 //Rational(10*j+i+1)
             }
         }
+        Logger.logout("", className: "Matrix")
+
     }
     
     /// Create a  matrix by copying an existing Matrix
     private init(matrix newMatrix: Matrix) {
+        Logger.login("", className: "Matrix")
         matrix = newMatrix.matrix
+        Logger.logout("", className: "Matrix")
     }
     
     /// Create a  matrix using a 2 dim array of Rational
     private init(twoDim newMatrix: [[Rational]]) {
+        Logger.login("", className: "Matrix")
         matrix = newMatrix
+        Logger.logout("", className: "Matrix")
     }
     
     /// Increase Matrix dimension by 1
     /// - Parameter backup: Take missing values from here if they exists
     func addCount(backup: Matrix) {
+        Logger.login("", className: "Matrix")
         for row in 0..<matrix.count {
             matrix[row].append(backup[row, count] )
         }
         let row = self.count
         matrix.append(Array(backup.matrix[row][0...row]))
+        Logger.logout("", className: "Matrix")
     }
     
     /// Decrease Matrix dimension by 1
     /// - Parameter backup:Move hiding values from here to remember
     func deleteCount(backup: Matrix) {
+        Logger.login("", className: "Matrix")
         if count > 1 {
             let lastRowIndex = count-1
             for row in 0...lastRowIndex {
@@ -62,7 +73,7 @@ import SwiftUI
  
             matrix.remove(at: lastRowIndex)
         }
-        //print(matrix)
+        Logger.logout("", className: "Matrix")
     }
 
     /// Allows to index with [v,  h]
@@ -79,6 +90,7 @@ import SwiftUI
     func binding(row: Int, column: Int) -> Binding<Rational> {
         Rational.binding(
             get: {
+                Logger.write("binding.get", className: "Matrix")
                 if row < self.count && column < self.count {
                     return self[row, column]
                 } else {
@@ -86,6 +98,7 @@ import SwiftUI
                 }
             },
             set: {
+                Logger.write("binding.set", className: "Matrix")
                 if row < self.count && column < self.count {
                     self[row, column] = $0
                 }
@@ -149,10 +162,12 @@ extension Matrix {
     ///   - index: column index
     /// - Returns: Matrix where the column at index is replaced by vector
     func insertColumn(_ A: Matrix, column: Vector, at index: Int) -> Matrix {
+        Logger.login("", className: "Matrix")
         let B = Matrix(matrix: A) // must be a deep copy!
         for i in 0..<A.count {
             B[i, index] = column[i]
         }
+        Logger.logout("", className: "Matrix")
         return B
     }
     
@@ -160,6 +175,7 @@ extension Matrix {
     /// - Parameter b: Inhomogeneous vector
     /// - Returns: Solution of the linear equation system as vector
     func solveCramer(_ b: Vector) -> Vector {
+        Logger.login("", className: "Matrix")
         let startTime = Date().timeIntervalSince1970
         let n = count
         guard matrix.allSatisfy({ $0.count == n }), b.count == n else {
@@ -168,6 +184,7 @@ extension Matrix {
         
         let detA = det
         if detA.num == 0 {
+            Logger.logout("", className: "Matrix")
             return Vector() // singular system
         }
         let x = Vector(value: Rational(0), count:n)
@@ -177,6 +194,7 @@ extension Matrix {
             x[i] = detAi / detA
         }
         elapsedCramer=Date().timeIntervalSince1970-startTime
+        Logger.logout("", className: "Matrix")
         return x
     }
     
@@ -197,6 +215,7 @@ extension Matrix {
     /// - Parameter b: Inhomogeneous vector
     /// - Returns: Solution of the linear equation system as vector
     func solveGaussianExact(_ b: Vector) -> Vector {
+        Logger.login("", className: "Matrix")
         let startTime = Date().timeIntervalSince1970
         let n = count
         guard matrix.allSatisfy({ $0.count == n }), b.count == n else {
@@ -245,7 +264,7 @@ extension Matrix {
             x[i] = sum / M[i, i]
         }
         elapsedGauss=Date().timeIntervalSince1970-startTime
-
+        Logger.logout("", className: "Matrix")
         return x
     }
 
@@ -259,15 +278,19 @@ extension Matrix: Codable {
     }
 
     convenience init(from decoder: Decoder) throws {
+        Logger.login("", className: "Matrix")
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let matrix = try container.decode([[Rational]].self, forKey: .matrix)
         self.init(count: matrix.count)
         self.matrix = matrix
+        Logger.logout("", className: "Matrix")
     }
 
     func encode(to encoder: Encoder) throws {
+        Logger.login("", className: "Matrix")
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(matrix, forKey: .matrix)
+        Logger.logout("", className: "Matrix")
     }
 
 }

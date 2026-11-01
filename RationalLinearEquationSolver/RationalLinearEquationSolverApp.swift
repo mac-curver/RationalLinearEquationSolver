@@ -34,26 +34,16 @@ struct EmptyCommands: Commands {
 @main
 struct RationalLinearEquationSolverApp: App {
     
-
-    var contentView: ContentView
-    @State private var equation = Equation()
-    
-    init() {
-        /*
-        let uniqueState = WindowState()
-        contentView = ContentView(model: uniqueState)
-         */
-        contentView = ContentView()
-    }
+    @StateObject private var equation = Equation()
+    @State private var showAlert = false
     
     var body: some Scene {
         WindowGroup {
-            contentView
+            ContentView(equation: equation, showAlert: $showAlert)
         }
-        /*
         //.commandsRemoved() // remove standard menu items!
         .commands {
-            //MacMenuCommands(using: contentView)
+            MacMenuCommands(equation: equation, showAlert: $showAlert)
         }
         
         // 2. Build your custom-sized window
@@ -80,8 +70,6 @@ struct RationalLinearEquationSolverApp: App {
         }
         .windowResizability(.contentSize)
         .defaultLaunchBehavior(.suppressed)
-         */
-
         
     }
 }

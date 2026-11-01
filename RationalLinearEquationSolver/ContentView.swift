@@ -8,15 +8,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-
-/*
-@Observable
-class WindowState {
-    // This state will be unique to each window
-    //var equation:Equation = Equation()
-}
- */
-
+import os.log
 
 
 /// View for the main window
@@ -34,17 +26,12 @@ struct ContentView: View {
     static let variables = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
      */
 
-    //@Bindable var model: WindowState
+    @ObservedObject var equation: Equation
+    @Binding var showAlert: Bool
 
-    @State var equation = Equation()
-
-    /// Two backup storages to remember settings when matrix re-increases
-    @State private var matrixBackup = Matrix(count: variables.count)
-    @State private var inhomogeneousBackup = Vector(value: Rational(1), count: variables.count)
-    
-    /// Used to show error alert
-    @State public var showAlert = false
-
+    /// Two backup storages to remember settings when matrix dimension re-increases
+    @State var matrixBackup = Matrix(count: variables.count)
+    @State var inhomogeneousBackup = Vector(value: Rational(1), count: variables.count)
     
     /// Main view body
     var body: some View {
@@ -76,6 +63,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    /*
                     /// Plot the solution using Cramers method
                     if matrix.count < Matrix.MaxCramer {
                         Text("===== Cramer \(matrix.elapsedCramer) s =======")
@@ -84,6 +72,7 @@ struct ContentView: View {
                             Text("\(ContentView.variables[row]) \t= \t\(solution[row].description)")
                         }
                     }
+                     */
                     /// Plot the solution using Gauss elimination method
                     Text("===== Gauss \(matrix.elapsedGauss) s =======")
                     let solution = matrix.solveGaussianExact(inhomogeneous)
@@ -100,8 +89,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem() {
                     Button(action:{
-                        matrix.addCount(backup: matrixBackup)
-                        inhomogeneous.addCount(backup: inhomogeneousBackup)
+                        equation.addCount(contentView: self)
                     }) {
                         Text("Add row/column")
                     }
@@ -109,8 +97,7 @@ struct ContentView: View {
                 }
                 ToolbarItem() {
                     Button(action:{
-                        matrix.deleteCount(backup: matrixBackup)
-                        inhomogeneous.deleteCount(backup: inhomogeneousBackup)
+                        equation.deleteCount(contentView: self)
                     }) {
                         Text("Delete row/column")
                     }
@@ -147,6 +134,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    //ContentView(model: WindowState())
-    ContentView()
+    ContentView(equation: Equation(), showAlert: .constant(false))
 }

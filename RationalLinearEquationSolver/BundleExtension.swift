@@ -24,15 +24,17 @@ public extension Bundle {
         infoDictionary?["CFBundleIdentifier"] as? String ?? "..."
     }
     
-    /// Returns the app version
+    /// Returns the build version
     var build: String {
         infoDictionary?["CFBundleVersion"] as? String ?? "..."
     }
     
+    /// Returns the version
     var version: String {
         infoDictionary?["CFBundleShortVersionString"] as? String ?? "..."
     }
     
+    /// Returns the copyright message
     var copyright: String {
         infoDictionary?["NSHumanReadableCopyright"] as? String ?? "..."
     }
