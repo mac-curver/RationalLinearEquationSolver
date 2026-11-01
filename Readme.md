@@ -20,7 +20,7 @@ The conversion from Algol 68 to Swift was completed using Copilot. Copilot corre
 
 Cramer’s rule is significantly slower than the Gaussian elimination method and is therefore not used for larger systems.
 
-The coefficients are integer fractions such as 7/8 and can also be entered as 7:8. The coefficient matrix can be extended to a maximum of 10 x 10 by pressing the <Add row/column> button and reduced by pressing the <Delete row/column> button. An equation can be saved to disk using the <Save…> button or the file menu and retrieved using the <Load…> button or the appropriate menu item. The file is stored in JSON format and can be edited using any text editor.
+The coefficients are integer fractions such as 7/8 and can also be entered as 7:8. The coefficient matrix can be extended to a maximum of 10 x 10 by pressing the <Increase> button and reduced by pressing the <Decrease> button. An equation can be saved to disk using the <Save…> button or the file menu and retrieved using the <Load…> button or the appropriate menu item. The file is stored in JSON format and can be edited using any text editor.
 
 ## Help
 
@@ -34,8 +34,9 @@ LegoEsprit@kabelbw.de
 
 ## Version History
 
-* 1.03
-    * First published version
+   - 1.03    First published version
+- 1.04    Errors corrected to Load and Save from menu bar (with the help of Codex)
+    
 
 ## Original version
 
@@ -47,4 +48,4 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Acknowledgements
 
-* -
+* None
